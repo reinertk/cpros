@@ -1,0 +1,37 @@
+project cpros_test1 is
+
+   type Modes is ("Compile", "Analyze");
+   Mode : Modes := External ("MODE", "Compile");
+
+   for Source_Dirs use ("src"); 
+                       
+   for Object_Dir use "obj";
+   for Exec_Dir   use ".";
+   for Main       use ("cpros_test1.adb");
+
+   package Builder is --<<<  for gprbuild
+      for Executable ("cpros_test1.adb") use "cpros_test1";
+   end Builder;
+
+   package Compiler is --<<<  for the compiler
+    case Mode is
+        when "Compile" =>
+           for Switches ("ada") use ("-gnatwa", "-gnata"); 
+        when "Analyze" =>
+           for Switches ("Ada") use ("-gnatwa"); 
+     end case;
+   end Compiler;
+
+   package Binder is --<<<  for the binder
+   end Binder;
+
+   package Linker is --<<<  for the linker
+      for Default_Switches ("ada") use ("-lglut", "-lGL", "-lGLU");
+   end Linker;
+
+   package Pretty_Printer is
+      for Default_Switches ("ada") use ("-nL", "-kL", "-l1", "--separate-label");
+   end Pretty_Printer;
+
+end cpros_test1;
+
