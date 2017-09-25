@@ -42,6 +42,9 @@ type c_t is (c_exit, c_do, c_this, c_that);
 procedure cpros_actual1(command : in c_t; str : in String) with
                         pre => command not in c_exit | c_do is
 
+-- command contains actual entered/input command word (converted to type c_t).   
+-- str contains the the whole command line. 
+
     lw : constant String := split_string.last_word (str);
     nw : constant Natural := split_string.Number_Of_Words(str);
 
@@ -66,7 +69,7 @@ package cpros_package1 is new cpros (c_t => c_t, cpros_main => cpros_actual1);
 begin
 
 -- cprosa below calls cpros_actual1 (which substitutes formal procedure in the generic cpros_package1) 
--- for each input commend line (from terminal or file):
+-- for each input command line (from terminal or file):
 
 cpros_package1.cprosa(file1 => Ada.Text_IO.Standard_Input);
 
