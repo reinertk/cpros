@@ -27,44 +27,17 @@
 --
 --------------------------------------------------------------------------------------
 
-with Text_IO;       use Text_IO;
-with Ada;
-with Ada.Text_IO;
-with cpros;
-with split_string; 
+with Ada.Characters.Latin_1;
 
-procedure cpros_test1 is
+package split_string is
 
--- list of commands (preceeded by "c_"):
+   White_Space1 : constant String := " ," & Ada.Characters.Latin_1.HT;
+   function Number_Of_Words (FS : String) return Natural;
+   function Word
+     (FS          : in String;
+      Word_Number :    Natural;
+      S           :    String := White_Space1) return String;
+   function Last_Word (FS : String; S : String := White_Space1) return String;
+   function First_Word (FS : String; S : String := White_Space1) return String;
 
-type c_t is (c_exit, c_do, c_this, c_that);
-
-procedure cpros_actual1(command : in c_t; str : in String) with
-                        pre => command not in c_exit | c_do is
-
-    lw : constant String := split_string.last_word (str);
-    nw : constant Natural := split_string.Number_Of_Words(str);
-
-begin
-
-   Put_Line("You did enter" & natural'image(nw) & " command component(s) (free for use). Last argument is """ 
-                              & (if nw > 1 then lw else "") & """" ); 
-   For i in 1..nw loop
-       Put_Line(" Word number" & integer'image(i) & "  " & split_string.word (str, i));
-   end loop;
-
-   New_Line;
-   case command is
-     when c_exit | c_do => null;
-     when c_this => Put_Line(" You ended up here (this)");
-     when c_that => Put_Line(" You ended up here (that)");
-   end case;
-end cpros_actual1;
-
-package cpros_package1 is new cpros (c_t => c_t, cpros_main => cpros_actual1);
-
-begin
-
-cpros_package1.cprosa(file1 => Ada.Text_IO.Standard_Input);
-
-end cpros_test1;
+end split_string;
