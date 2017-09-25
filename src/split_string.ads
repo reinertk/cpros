@@ -31,13 +31,13 @@ with Ada.Characters.Latin_1;
 
 package split_string is
 
-   White_Space1 : constant String := " ," & Ada.Characters.Latin_1.HT;
+   Command_White_Space1 : constant String := " ," & Ada.Characters.Latin_1.HT;
    function Number_Of_Words (FS : String) return Natural;
    function Word
      (FS          : in String;
       Word_Number :    Natural;
-      S           :    String := White_Space1) return String;
-   function Last_Word (FS : String; S : String := White_Space1) return String;
-   function First_Word (FS : String; S : String := White_Space1) return String;
+      WS          :    String := Command_White_Space1) return String;
+   function Last_Word (FS : String; S : String := Command_White_Space1) return String;
+   function First_Word (FS : String; S : String := Command_White_Space1) return String;
 
 end split_string;

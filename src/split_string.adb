@@ -39,11 +39,11 @@ package body split_string is
    function Word
      (FS          : String;
       Word_Number : Natural;
-      S           : String := White_Space1) return String
+      WS          : String := Command_White_Space1) return String
    is
       I      : Integer;
       J      : Integer                := FS'First - 1;
-      Space1 : constant Character_Set := To_Set (S);
+      Space1 : constant Character_Set := To_Set (WS);
       n      : Integer                := 0;
       k1, k2 : Integer                := 0;
       No_matching_quotation : exception;
@@ -95,7 +95,7 @@ package body split_string is
 
    function First_Word
      (FS : String;
-      S  : String := White_Space1) return String
+      S  : String := Command_White_Space1) return String
    is
    begin
       return Word (FS, 1, S);
@@ -103,7 +103,7 @@ package body split_string is
 
    function Last_Word
      (FS : String;
-      S  : String := White_Space1) return String
+      S  : String := Command_White_Space1) return String
    is
    begin
       return Word (FS, Number_Of_Words (FS), S);

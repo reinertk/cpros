@@ -27,7 +27,7 @@
 --
 --------------------------------------------------------------------------------------
 
-with rsplit;
+with split_string;
 
 with Ada.Strings.Fixed; use Ada.Strings.Fixed;
 with Ada.Text_IO;
@@ -47,7 +47,7 @@ package body cpros is
          if i1 > 0 then
             k := Positive'Value (str0 (i1 + 1 .. i1 + 1));
             return str0 (str0'First .. i1 - 1) &
-              rsplit.word (cmdl1, k + 2) &
+              split_string.word (cmdl1, k + 2) &
               rep1 (str0 (i1 + 2 .. str0'Last));
          end if;
          return str0;
@@ -64,18 +64,17 @@ package body cpros is
             exit when End_Of_File (file1);
          end if;
          declare
---          str1 : constant String := rep1 (Get_Line (file1)) & " ";
             str1 : constant String := rep1 (Get_Line (file1));
          begin
             if not term1 then
                Put_Line (str1);
             end if;
-            if rsplit.number_of_words (str1) > 0
+            if split_string.number_of_words (str1) > 0
               and then str1 (str1'First) /= '#'
             then
                declare
                begin
-                 command := c_t'Value ("C_" & rsplit.first_word (str1));
+                 command := c_t'Value ("C_" & split_string.first_word (str1));
                  exception
                    when Constraint_Error => Put_Line(" * Comman format error * (Constraint_Error)");
                                             raise;
@@ -86,7 +85,7 @@ package body cpros is
                if command = c_t'Value ("C_DO") then
                   New_Line;
                   declare
-                    cfile2 : constant String := rsplit.word (str1, 2);
+                    cfile2 : constant String := split_string.word (str1, 2);
                   begin
                      if not Exists (cfile2) then
                         Put_Line("  ** File not found: " & cfile2 & ".");

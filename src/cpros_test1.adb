@@ -65,6 +65,10 @@ package cpros_package1 is new cpros (c_t => c_t, cpros_main => cpros_actual1);
 
 begin
 
+-- cprosa below calls cpros_actual1 (which substitutes formal procedure in the generic cpros_package1) 
+-- for each input commend line (from terminal or file):
+
 cpros_package1.cprosa(file1 => Ada.Text_IO.Standard_Input);
 
 end cpros_test1;
+
