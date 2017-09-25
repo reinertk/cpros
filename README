@@ -1,4 +1,36 @@
-This is a test using github publishing a lightweight Ada command processor.
+cpros is a lightweight Ada command processor made by me, Reinert Korsnes.
+It can facilitate tests of parts of a program during development, and it has
+therefore been useful for me when doing complex programming.
 
-More to come....
+-------------------------------------------------------------------------
 
+Short version of instruction (for linux users):
+
+Start (open) a terminal session/window ("$" here represents command prompt) :
+
+Download the source file and make a file structure as for the version on github. 
+Alternatively use git to clone:
+
+$ git clone https://github.com/reinertk/cpros
+
+This gives the directory "cpros" below your current directory. Enter cpros (i.e. "cd cpros").
+Make sub-directory "obj":
+
+$ mkdir obj
+
+Then enter (to produce the test program cpros_test1):
+
+$ gprbuild
+
+To start this test program, enter: 
+
+$ ./cpros_test1
+
+Now enter "do mac1" when prompted, and see what happens.
+You have to dig into the source code of cpros_test1 to figure out more if 
+you want to use this simple (but for me useful) tool.
+
+My best wishes to all,
+
+September 25, 2017
+Reinert Korsnes
