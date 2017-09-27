@@ -1,5 +1,5 @@
-           cpros (Command Processor) 
-           -------------------------
+           cpros (an Ada Command Processor) 
+           --------------------------------
 
 What it is:
 -----------
