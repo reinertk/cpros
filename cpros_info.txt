@@ -63,6 +63,6 @@ cpros.ads       : (generic) package for procedure for (only) procedure cprosa wh
                   if intended to call a procedure provided by the user (programmer using cpros).
                   In the template "cpros_test1.adb" it is called "cpros_actual1".
  
-split_string.ads : is for string handling (splitting a string into "atoms" separated by space or comma ",".
+split_string.ads : is for string handling (splitting a string into "atoms" separated by space or comma ",").
                   
                   
