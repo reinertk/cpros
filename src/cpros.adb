@@ -35,7 +35,7 @@ with Ada.Directories; use Ada.Directories;
 
 package body cpros is
 
-   procedure cprosa (file1 : in File_Type; cmdl1 : String := "") is
+   procedure cprosa (file1 : in File_Type; command_string : String := "") is
       command : c_t;
       term1   : constant Boolean := file1 in Ada.Text_IO.Standard_Input;
       file2   : File_Type;
@@ -47,7 +47,7 @@ package body cpros is
          if i1 > 0 then
             k := Positive'Value (str0 (i1 + 1 .. i1 + 1));
             return str0 (str0'First .. i1 - 1) &
-              split_string.word (cmdl1, k + 2) &
+              split_string.word (command_string, k + 2) &
               rep1 (str0 (i1 + 2 .. str0'Last));
          end if;
          return str0;
@@ -91,7 +91,7 @@ package body cpros is
                         Put_Line("  ** File not found: " & cfile2 & ".");
                      end if;
                      Open (file2, Text_IO.In_File, cfile2);
-                     cprosa (file1 => file2, cmdl1 => str1);
+                     cprosa (file1 => file2, command_string => str1);
                      exit when not Is_Open (file2);
                      Close (File => file2);
                   end;

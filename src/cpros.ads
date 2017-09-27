@@ -33,5 +33,5 @@ generic
    type C_t is (<>);
    with procedure cpros_main (Command : in C_t; Str : in String);
 package cpros is
-   procedure cprosa (file1 : in File_Type; cmdl1 : String := "");
+   procedure cprosa (file1 : in File_Type; command_string : String := "");
 end cpros;

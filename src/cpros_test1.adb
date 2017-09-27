@@ -39,21 +39,21 @@ procedure cpros_test1 is
 
 type c_t is (c_exit, c_do, c_this, c_that);
 
-procedure cpros_actual1(command : in c_t; str : in String) with
+procedure cpros_actual1(command : in c_t; command_string : in String) with
                         pre => command not in c_exit | c_do is
 
 -- command contains actual entered/input command word (converted to type c_t).   
--- str contains the the whole command line. 
+-- command_string contains the the whole command line. 
 
-    lw : constant String := split_string.last_word (str);
-    nw : constant Natural := split_string.Number_Of_Words(str);
+    lw : constant String := split_string.last_word (command_string);
+    nw : constant Natural := split_string.Number_Of_Words(command_string);
 
 begin
 
    Put_Line("You did enter" & natural'image(nw) & " command component(s) (free for use). Last argument is """ 
                               & (if nw > 1 then lw else "") & """" ); 
    For i in 1..nw loop
-       Put_Line(" Word number" & integer'image(i) & "  " & split_string.word (str, i));
+       Put_Line(" Word number" & integer'image(i) & "  " & split_string.word (command_string, i));
    end loop;
 
    New_Line;
@@ -69,7 +69,8 @@ package cpros_package1 is new cpros (c_t => c_t, cpros_main => cpros_actual1);
 begin
 
 -- cprosa below calls cpros_actual1 (which substitutes formal procedure in the generic cpros_package1) 
--- for each input command line (from terminal or file):
+-- for each input command line (from terminal or file). It passes to the procedure cpros_actual1 a command 
+-- name (stored in the variable "command") and also the whole command stored in "command_string": 
 
 cpros_package1.cprosa(file1 => Ada.Text_IO.Standard_Input);
 
