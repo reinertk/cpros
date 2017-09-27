@@ -3,8 +3,8 @@
 
 What it is:
 -----------
-Cpros is a light-weight tool mainly to help developing Ada programs. The intention for it is to support quick 
-prototyping and separate/modular tests of parts of programs. More especially, it is a tool for processing commands 
+Cpros is a light-weight tool mainly to help developing Ada programs. Its is meant to be a simple and handy tool for 
+quick prototyping and separate/modular tests of parts of programs. More especially, it is a tool for processing commands 
 which one may enter directly to a program from terminal or via files (line by line). It is made with 
 inspiration from computer os "shells" (such as unix shells). Cpros may also be used permanently as part
 of a computer program for interactive control/operation or batch processing.
@@ -50,8 +50,8 @@ cpros_test1.adb : Simple demo which may serve as a template for a programmer usi
                      when .. =>
                   end case; 
 
-                  This can ensure that no commands are left out for further processing.
-                  Storing commands in a variable of enumeration type, also facilitate 
+                  This can ensure that no commands are left out for further treatment.
+                  Representing commands by an enumeration type variable, also facilitate 
                   compact and readable code (hopefully).
 
 cpros.ads       : (generic) package for procedure for (only) procedure cprosa which
