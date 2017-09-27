@@ -30,9 +30,17 @@ $ ./cpros_test1
 
 Now enter "do mac1" when prompted, and see what happens.
 You must (so far) dig into the source code of cpros_test1 to figure out more if 
-you want to use this simple (but for me useful) tool.
+you want in practice to use this simple (but for me useful) tool.
+However, the file "cpros_info.txt" (hopefully) provides some helpful introduction.
 
 My best wishes to all,
 
 September 25, 2017
 Reinert Korsnes
+
+Change log:
+Sep 25, 2017 : Started to try to load up to git (as nowise user of it - head on block).
+Sep 27, 2017 : Update to ease use of code (system still in initial phase). Credit to
+               contributors on google group comp.lang.ada to make me hurry up trying 
+               to improve.
+            
