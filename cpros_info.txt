@@ -38,7 +38,7 @@ mac1 should in this case contain "$1" and "$2" which cpros replaces respectively
 (this is quite similar to for example bash scripts).
 
 The user defines his/her commands hardcoded in his/her source code (see template/demo cpros_test1.adb below).
-An exception is the the commands "do" and "exit". "do" is explained above. The reader may guess what is the
+An exception is the commands "do" and "exit". "do" is explained above. The reader may guess what is the
 intention of the obligatory command "exit".
 
 
