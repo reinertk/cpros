@@ -44,25 +44,23 @@ intention of the obligatory command "exit".
 
 Source files
 ------------
-cpros_test1.adb : Simple demo which may serve as a template for a programmer using cpros.
-                  Note here (in the code) that an enumeration type "c_t" represents command names to 
-                  facilitate use of the Ada case statement (the user must define his/her own command names
-                  preceeded by "c_" except the commands "do" and "exit"):
+cpros_test1.adb :  Simple demo which may serve as a template for a programmer using cpros.
+                   Note here (in the code) that an enumeration type "c_t" represents command names to 
+                   facilitate use of the Ada case statement (the user must define his/her own command names
+                   preceeded by "c_" except the commands "do" and "exit"):
                   
-                  case command is
-                     when .. =>
-                     when .. =>
-                  end case; 
+                   case command is
+                      when .. =>
+                      when .. =>
+                   end case; 
 
-                  Use of enumeration type for command names can ensure that no commands are left 
-                  out for further treatment. Representing commands by an enumeration type variable, 
-                  can also facilitate compact and readable code (hopefully).
-                 
+                   This use of enumeration type for command names can ensure that no commands are left 
+                   out for further treatment. It can also facilitate compact and readable code (hopefully).
 
-cpros.ads       : (generic) package for procedure for (only) procedure cprosa which
-                  if intended to call a procedure provided by the user (programmer using cpros).
-                  In the template "cpros_test1.adb" it is called "cpros_actual1".
+cpros.ads        : (generic) package for procedure for (only) procedure cprosa which
+                   if intended to call a procedure provided by the user (programmer using cpros).
+                   In the template "cpros_test1.adb" it is called "cpros_actual1".
  
-split_string.ads : is for string handling (splitting a string into "atoms" separated by space or comma ",").
+split_string.ads : string handling (splitting a string into "atoms" separated by space or comma ",").
                   
                   
