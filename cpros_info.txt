@@ -37,13 +37,17 @@ passes the arguments "Hello" and "World" to the command file mac1.
 mac1 should in this case contain "$1" and "$2" which cpros replaces respectively by "Hello" and "World"
 (this is quite similar to for example bash scripts).
 
+The user defines his/her commands hardcoded in his/her source code (see template/demo cpros_test1.adb below).
+An exception is the the commands "do" and "exit". "do" is explained above. The reader may guess what is the
+intention of the obligatory command "exit".
 
 
 Source files
 ------------
 cpros_test1.adb : Simple demo which may serve as a template for a programmer using cpros.
                   Note here (in the code) that an enumeration type "c_t" represents command names to 
-                  facilitate use of the Ada case statement:
+                  facilitate use of the Ada case statement (the user must define his/her own command names
+                  preceeded by "c_" except the commands "do" and "exit"):
                   
                   case command is
                      when .. =>
