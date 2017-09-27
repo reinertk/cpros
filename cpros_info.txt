@@ -37,9 +37,10 @@ passes the arguments "Hello" and "World" to the command file mac1.
 mac1 should in this case contain "$1" and "$2" which cpros replaces respectively by "Hello" and "World"
 (this is quite similar to for example bash scripts).
 
-The user defines his/her commands hardcoded in his/her source code (see template/demo cpros_test1.adb below).
-An exception is the commands "do" and "exit". "do" is explained above. The reader may guess what is the
-intention of the obligatory command "exit".
+The user is free to define his/her commands hard-coded in his/her source code (see the template/demo "cpros_test1.adb" below).
+An exception are the commands "do" and "exit". They are obligatory. "do" is explained above. The reader may 
+guess what is the intention of command "exit".
+
 
 
 Source files
