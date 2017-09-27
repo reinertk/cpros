@@ -1,16 +1,17 @@
-           cpros (an Ada Command Processor) 
+           Cpros (an Ada Command Processor) 
            --------------------------------
 
 What it is:
 -----------
-cpros is a light-weight tool to help develop Ada programs. Its intention is to support quick prototyping 
+Cpros is a light-weight tool to help develop Ada programs. The intention for it is to support quick prototyping 
 and separate/modular tests of parts of programs. More especially, it is a tool for processing commands 
 which one may enter directly to a program from terminal or via files (line by line). It is made with 
 inspiration from computer os "shells" (such as unix shells). 
 
 How it functions
 ----------------
-A command has the common format:
+Assume a program is based on cpros for terminal interaction. Cpros will then, at program start from a terminal, 
+prompt the user for a command, which has the common format:
 
 commad_name [arguments] ....
 
@@ -58,6 +59,4 @@ cpros.ads       : (generic) package for procedure for (only) procedure cprosa wh
  
 split_string.ads : is for string handling (splitting a string into "atoms" separated by space or comma ",".
                   
-                  
- 
                   
