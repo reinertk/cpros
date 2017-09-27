@@ -54,9 +54,10 @@ cpros_test1.adb : Simple demo which may serve as a template for a programmer usi
                      when .. =>
                   end case; 
 
-                  This can ensure that no commands are left out for further treatment.
-                  Representing commands by an enumeration type variable, also facilitate 
-                  compact and readable code (hopefully).
+                  Use of enumeration type for command names can ensure that no commands are left 
+                  out for further treatment. Representing commands by an enumeration type variable, 
+                  can also facilitate compact and readable code (hopefully).
+                 
 
 cpros.ads       : (generic) package for procedure for (only) procedure cprosa which
                   if intended to call a procedure provided by the user (programmer using cpros).
