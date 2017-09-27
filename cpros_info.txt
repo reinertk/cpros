@@ -40,8 +40,8 @@ mac1 should in this case contain "$1" and "$2" which cpros replaces respectively
 
 Source files
 ------------
-cpros_test1.adb : Simple demo may serve as a template for using cpros.
-                  Not here that an enumeration type "c_t" represents command names to 
+cpros_test1.adb : Simple demo which may serve as a template for a programmer using cpros.
+                  Note here (in the code) that an enumeration type "c_t" represents command names to 
                   facilitate use of the Ada case statement:
                   
                   case command is
