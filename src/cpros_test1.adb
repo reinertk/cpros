@@ -39,6 +39,9 @@ procedure cpros_test1 is
 
 type c_t is (c_exit, c_do, c_this, c_that);
 
+-- (Note: when you use cpros, you are supposed to define your own version of the type "c_t"
+--  providing your actual commands. However, the commands "c_exit" and "c_do" are obligatory.
+
 procedure cpros_actual1(command : in c_t; command_string : in String) with
                         pre => command not in c_exit | c_do is
 

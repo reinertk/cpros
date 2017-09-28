@@ -24,7 +24,7 @@
 --  http://www.opensource.org/licenses/mit-license.php
 --------------------------------------------------------------------------------------
 -- Change log:
---
+---
 --------------------------------------------------------------------------------------
 
 with split_string;
@@ -60,9 +60,8 @@ package body cpros is
          if term1 then
             New_Line;
             Put ("Enter command:");
-         else
-            exit when End_Of_File (file1);
          end if;
+         exit when End_Of_File (file1);
          declare
             str1 : constant String := rep1 (Get_Line (file1));
          begin

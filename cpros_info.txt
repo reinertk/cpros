@@ -6,7 +6,7 @@ What it is:
 Cpros is a light-weight tool mainly to help developing Ada programs. Its is meant to be simple and handy for quick 
 prototyping and separate/modular tests of parts of programs. More especially, it is a tool for processing commands 
 which one may enter directly to a program from terminal or via files (line by line). It is made with 
-inspiration from computer os "shells" (such as unix shells). Cpros may also be used as a permanent part
+inspiration from computer os "shells" (such as unix shells). Cpros may also be used permanently as a part
 of a computer program for interactive control/operation or batch processing.
 
 How it functions

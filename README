@@ -16,13 +16,9 @@ Alternatively use git to clone:
 $ git clone https://github.com/reinertk/cpros
 
 This gives the directory "cpros" below your current directory. Enter cpros (i.e. "cd cpros").
-Make sub-directory "obj":
-
-$ mkdir obj
-
 Then enter (to produce the test program cpros_test1):
 
-$ gprbuild
+$ gprbuild -p
 
 To start this test program, enter: 
 
@@ -30,7 +26,8 @@ $ ./cpros_test1
 
 Now enter "do mac1" when prompted, and see what happens.
 You must (so far) dig into the source code of cpros_test1 to figure out more if 
-you want in practice to use this simple (but for me useful) tool.
+you want in practice to use this simple (but for me useful) tool. cpros_test1-adb
+can function as a template for building you own program using cpros. 
 However, the file "cpros_info.txt" (hopefully) provides some helpful introduction.
 
 My best wishes to all,
