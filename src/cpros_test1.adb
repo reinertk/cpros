@@ -65,6 +65,7 @@ begin
      when c_this => Put_Line(" You ended up here (this)");
      when c_that => Put_Line(" You ended up here (that)");
    end case;
+
 end cpros_actual1;
 
 package cpros_package1 is new cpros (c_t => c_t, cpros_main => cpros_actual1);

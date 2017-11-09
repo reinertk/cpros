@@ -83,11 +83,11 @@ package body split_string is
          return "";
    end Word;
 
-   function Number_Of_Words (FS : String) return Natural is
+   function Number_Of_Words (FS : String; WS : String := Command_White_Space1) return Natural is
       n : Natural := 0;
    begin
       loop
-         exit when Word (FS, n + 1) = "";
+         exit when Word (FS, n + 1, WS) = "";
          n := n + 1;
       end loop;
       return n;
@@ -95,18 +95,18 @@ package body split_string is
 
    function First_Word
      (FS : String;
-      S  : String := Command_White_Space1) return String
+      WS : String := Command_White_Space1) return String
    is
    begin
-      return Word (FS, 1, S);
+      return Word (FS, 1, WS);
    end First_Word;
 
    function Last_Word
      (FS : String;
-      S  : String := Command_White_Space1) return String
+      WS : String := Command_White_Space1) return String
    is
    begin
-      return Word (FS, Number_Of_Words (FS), S);
+      return Word (FS, Number_Of_Words (FS), WS);
    end Last_Word;
 
 end split_string;
