@@ -112,7 +112,11 @@ package body split_string is
       WS : String := Command_White_Space1) return String
    is
    begin
+<<<<<<< HEAD
       return Word (FS, Number_Of_Words (FS,WS), WS);
+=======
+      return Word (FS, Number_Of_Words (FS), WS);
+>>>>>>> 3f887e4bf0379f8173ee55cfc297fcfb0467dd0c
    end Last_Word;
 
 end split_string;
