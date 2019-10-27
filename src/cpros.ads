@@ -30,8 +30,9 @@
 with Text_IO; use Text_IO;
 
 generic
-   type C_t is (<>);
-   with procedure cpros_main (Command : in C_t; Str : in String);
+type C_t is (<>);
+with procedure cpros_main (Command : in C_t; Str : in String);
 package cpros is
+   cfe0,cfe1 : exception;
    procedure cprosa (file1 : in File_Type; command_string : String := "");
 end cpros;
