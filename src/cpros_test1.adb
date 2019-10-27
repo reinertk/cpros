@@ -65,6 +65,7 @@ begin
      when c_this => Put_Line(" You ended up here (this)");
      when c_that => Put_Line(" You ended up here (that)");
    end case;
+
 end cpros_actual1;
 
 package cpros_package1 is new cpros (c_t => c_t, cpros_main => cpros_actual1);
@@ -74,6 +75,22 @@ begin
 -- cprosa below calls cpros_actual1 (which substitutes formal procedure in the generic cpros_package1) 
 -- for each input command line (from terminal or file). It passes to the procedure cpros_actual1 a command 
 -- name (stored in the variable "command") and also the whole command stored in "command_string": 
+
+  declare
+      ws : constant string := "/";
+--    cfile0  : constant String := "data1/ex28/D7_03_1_S_Bright Field_930.jpg"; 
+      cfile0  : constant String := "Reinert/Korsnes/Kolvereid"; 
+      cfile_a : constant String := split_string.last_word(cfile0,ws);
+  begin
+      Put_Line("A: " & cfile0);
+      Put_Line("B: " & cfile_a);
+      Put(" Number_Of_Words : ");Put(integer'image(split_string.Number_Of_Words(cfile0,"/")));New_Line;
+      Put("               1 : ");Put(split_string.Word(cfile0,1,ws));New_Line;
+      Put("               2 : ");Put(split_string.Word(cfile0,2,ws));New_Line;
+      Put("               3 : ");Put(split_string.Word(cfile0,3,ws));New_Line;
+      Put(" Last_Word       : ");Put(split_string.Last_Word(cfile0,ws));New_Line;
+  end;
+
 
 cpros_package1.cprosa(file1 => Ada.Text_IO.Standard_Input);
 

@@ -48,6 +48,11 @@ package body split_string is
       k1, k2 : Integer                := 0;
       No_matching_quotation : exception;
    begin
+    declare
+      A : constant String := Trim(Word.FS,both);
+      FS : constant string := (if Tail(A,1) = "&" and Tail(A,2) /= " &" then 
+                                  Head(A,A'length-1) & " &" else A);
+    begin
       if Index (FS, Set => Space1, Test => Ada.Strings.Outside) = 0 then
          return "";
       end if;
@@ -76,6 +81,7 @@ package body split_string is
           (Source => FS (I .. J),
            Left   => To_Set (""""),
            Right  => To_Set (""""));
+    end;
    exception
       when No_matching_quotation =>
          Put ("** No matching quotation mark ** ");
@@ -83,11 +89,11 @@ package body split_string is
          return "";
    end Word;
 
-   function Number_Of_Words (FS : String) return Natural is
+   function Number_Of_Words (FS : String; WS : String := Command_White_Space1) return Natural is
       n : Natural := 0;
    begin
       loop
-         exit when Word (FS, n + 1) = "";
+         exit when Word (FS, n + 1, WS) = "";
          n := n + 1;
       end loop;
       return n;
@@ -95,18 +101,18 @@ package body split_string is
 
    function First_Word
      (FS : String;
-      S  : String := Command_White_Space1) return String
+      WS : String := Command_White_Space1) return String
    is
    begin
-      return Word (FS, 1, S);
+      return Word (FS, 1, WS);
    end First_Word;
 
    function Last_Word
      (FS : String;
-      S  : String := Command_White_Space1) return String
+      WS : String := Command_White_Space1) return String
    is
    begin
-      return Word (FS, Number_Of_Words (FS), S);
+      return Word (FS, Number_Of_Words (FS,WS), WS);
    end Last_Word;
 
 end split_string;

@@ -74,11 +74,8 @@ package body cpros is
                declare
                begin
                  command := c_t'Value ("C_" & split_string.first_word (str1));
-                 exception
-                   when Constraint_Error => Put_Line(" * Comman format error * (Constraint_Error)");
-                                            raise;
-                   when others           => Put_Line(" * Strange error in cpros * ");
-                                            raise;
+               exception
+                 when Constraint_Error => Put_Line(" * Comman format error * (Constraint_Error)"); raise;
                end;
                exit when command = c_t'Value ("C_Exit");
                if command = c_t'Value ("C_DO") then
@@ -99,12 +96,12 @@ package body cpros is
                   cpros_main (command, str1);
                end if;
             end if;
-            exception
-               when others =>
-                    if not term1 then
-                       Close (file2);
-                       return;
-                    end if;
+         exception
+            when others =>
+                 if not term1 then
+                    Close (file2);
+                    return;
+                 end if;
          end;
       end loop command_loop;
 

@@ -1,6 +1,8 @@
-cpros is a lightweight Ada command processor made by me, Reinert Korsnes.
+Cpros is a lightweight Ada command processor made by me, Reinert Korsnes.
 It can facilitate tests of parts of a program during development, and it has
-therefore been useful for me when doing complex programming.
+therefore been useful for me when doing complex programming. Cpros may
+also be used permenently in programs (i.e. not only in the initial phase
+of development). 
 
 *Note: this release is to be considered experimental.
 
@@ -40,4 +42,5 @@ Sep 25, 2017 : Started to try to load up to github (as novice user of git and gi
 Sep 27, 2017 : Update to ease use of code (system still in initial phase). Credit to
                contributors on google group comp.lang.ada to make me hurry up trying 
                to improve.
-            
+Sep 28, 2017 : Made some improvements to ease code readaing and made CTRL+d also serve as "exit" from terminal.
+Oct 27, 2019 : Bug fix and code cleanup.            
