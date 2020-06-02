@@ -27,6 +27,7 @@
 -- test A
 --------------------------------------------------------------------------------------
 
+with Ada.Exceptions;
 with Text_IO;       use Text_IO;
 with Ada;
 with Ada.Text_IO;
@@ -35,37 +36,52 @@ with split_string;
 
 procedure cpros_test1 is
 
+   use Ada.Exceptions;
+
 -- list of commands (preceeded by "c_"):
 
-type c_t is (c_exit, c_do, c_this, c_that);
+   type c_t is (c_this, c_that);
+-- type c_t is (c_exit, c_do, c_repeat, c_this, c_that);
+-- subtype hidden_command_t is c_t with
+--         static_predicate => hidden_command_t in c_exit .. c_repeat;
+
 
 -- (Note: when you use cpros, you are supposed to define your own version of the type "c_t"
 --  providing your actual commands. However, the commands "c_exit" and "c_do" are obligatory.
 
-procedure cpros_actual1(command : in c_t; command_string : in String) with
-                        pre => command not in c_exit | c_do is
+procedure cpros_actual1(command : in c_t; command_string : in String) is 
 
 -- command contains actual entered/input command word (converted to type c_t).   
 -- command_string contains the the whole command line. 
 
     lw : constant String := split_string.last_word (command_string);
     nw : constant Natural := split_string.Number_Of_Words(command_string);
+    cfe : exception;
 
 begin
 
-   Put_Line("You did enter" & natural'image(nw) & " command component(s) (free for use). Last argument is """ 
-                              & (if nw > 1 then lw else "") & """" ); 
+   Put_Line("You did enter" & natural'image(nw) 
+                            & " command component(s) (free for use). Last argument is """ 
+                            & (if nw > 1 then lw else "") 
+                            & """" ); 
    For i in 1..nw loop
        Put_Line(" Word number" & integer'image(i) & "  " & split_string.word (command_string, i));
    end loop;
 
    New_Line;
    case command is
-     when c_exit | c_do => null;
      when c_this => Put_Line(" You ended up here (this)");
      when c_that => Put_Line(" You ended up here (that)");
    end case;
-
+   return;
+exception
+   when event : cfe =>
+        Put_Line (" ** Command format error: " & Exception_Message (event));
+        raise;
+   when event : others =>
+        Put_Line ("  " & Exception_Message (event));
+        Put_Line (" ** Command format error: " & command_string);
+        raise;
 end cpros_actual1;
 
 package cpros_package1 is new cpros (c_t => c_t, cpros_main => cpros_actual1);

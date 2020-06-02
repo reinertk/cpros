@@ -24,14 +24,16 @@
 --  http://www.opensource.org/licenses/mit-license.php
 --------------------------------------------------------------------------------------
 -- Change log:
+--
 --------------------------------------------------------------------------------------
 
-with Text_IO; use Text_IO;
+with Ada.Text_IO;
+use Ada.Text_IO;
 
 generic
-type C_t is (<>);
-with procedure cpros_main (Command : in C_t; Str : in String);
+   type c_t is (<>);
+   with procedure cpros_main (command : c_t; str : in String);
 package cpros is
-   cfe0,cfe1 : exception;
+   cfe0, cfe1 : exception;
    procedure cprosa (file1 : in File_Type; command_string : String := "");
 end cpros;

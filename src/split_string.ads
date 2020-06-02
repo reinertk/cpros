@@ -31,22 +31,28 @@ with Ada.Characters.Latin_1;
 
 package split_string is
 
-   Command_White_Space1 : constant String := " ,|" & Ada.Characters.Latin_1.HT;
-   Command_Single1      : constant String := "&";
+   command_white_space1 : constant String := " ,|" & Ada.Characters.Latin_1.HT;
+-- command_single1      : constant String := "&";
 
-   function Number_Of_Words (FS : String; 
-                             WS : String := Command_White_Space1) return Natural;
-   function Word      (FS          : in String;
-                       Word_Number : Natural;
-                       WS          : String := Command_White_Space1) return String;
-   function Last_Word (FS : String; 
-                       WS : String := Command_White_Space1) return String;
-   function First_Word(FS : String; 
-                       WS : String := Command_White_Space1) return String;
-   function Collect1  (FS : String;
-                       From_Word_Number : Natural;
-                       WS : String := Command_White_Space1) return String;
-   function Remove_Comment1(FS : String; CC : String := "#") return String;
-   function Expand1(FS : String; Singles : String) return String;
+
+   function number_of_words
+     (fs : String;
+      ws : String := command_white_space1) return Natural;
+   function word
+     (fs          : in String;
+      word_number :    Natural;
+      ws          :    String := command_white_space1) return String;
+   function last_word
+     (fs : String;
+      ws : String := command_white_space1) return String;
+   function first_word
+     (fs : String;
+      ws : String := command_white_space1) return String;
+   function collect1
+     (fs               : String;
+      from_word_number : Natural;
+      ws               : String := command_white_space1) return String;
+   function remove_comment1 (fs : String; cc : String := "#") return String;
+   function expand1 (fs : String; singles : String) return String;
 
 end split_string;
