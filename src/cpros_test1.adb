@@ -24,7 +24,7 @@
 --  http://www.opensource.org/licenses/mit-license.php
 --------------------------------------------------------------------------------------
 -- Change log:
--- test A
+-- 2020.06.14: Major upgrade (by Reinert Korsnes). 
 --------------------------------------------------------------------------------------
 
 with Ada.Exceptions;

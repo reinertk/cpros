@@ -24,7 +24,7 @@
 --  http://www.opensource.org/licenses/mit-license.php
 --------------------------------------------------------------------------------------
 -- Change log:
---
+-- 2020.06.14: removed exceptions declarations (by Reinert Korsnes)
 --------------------------------------------------------------------------------------
 
 with Ada.Text_IO;
@@ -33,6 +33,5 @@ generic
    type c_t is (<>);
    with procedure cpros_main (command : c_t; str : in String);
 package cpros is
--- cfe0 : exception;
    procedure cprosa (file1 : in File_Type; command_string : String := "");
 end cpros;
