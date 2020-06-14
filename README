@@ -43,3 +43,4 @@ Sep 27, 2017 : Update to ease use of code (system still in initial phase). Credi
                contributors on google group comp.lang.ada to make me hurry up trying 
                to improve.
 Sep 28, 2017 : Made some improvements to ease code readaing and made CTRL+d also serve as "exit" from terminal.
+Jun 14, 2020 : Major revision.
