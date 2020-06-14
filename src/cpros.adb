@@ -27,18 +27,14 @@
 -- 2020.06.14: Major upgrade (by Reinert Korsnes)
 --------------------------------------------------------------------------------------
 
-
 with split_string;      use split_string;
 with Ada.Strings.Fixed; use Ada.Strings.Fixed;
-with Ada.IO_Exceptions; 
-with Ada.Exceptions;    
-use Ada.Exceptions;
-with cpros_exceptions;
-use  cpros_exceptions;
+with Ada.IO_Exceptions;
+with Ada.Exceptions;    use Ada.Exceptions;
 
 package body cpros is
 
-   procedure cprosa (file1 : in File_Type; command_string : String := "") is
+   procedure cpros0 (file1 : in File_Type; command_string : String := "") is
       term1 : constant Boolean := file1 in Ada.Text_IO.Standard_Input;
 
       function rep1 (str0 : String) return String is
@@ -96,7 +92,7 @@ package body cpros is
                         file2  : File_Type;
                      begin
                         Open (file2, In_File, cfile2);
-                        cprosa (file1 => file2, command_string => str1);
+                        cpros0 (file1 => file2, command_string => str1);
                         Close (File => file2);
                      exception
                         when event : Name_Error =>
@@ -117,26 +113,26 @@ package body cpros is
                         str     => str1);
                   exception
                      when Constraint_Error =>
-                         Put_Line (" * Unknown command: " & First_Word(str1));
-                         raise cfe0;
+                        Put_Line (" * Unknown command: " & first_word (str1));
+                        raise cfe0;
                      when event : cfe0 =>
-                         New_Line;
-                         Put_Line ("* Command format error *");
-                         Put_Line (Exception_Message (event));
-                         raise;
+                        New_Line;
+                        Put_Line ("* Command format error *");
+                        Put_Line (Exception_Message (event));
+                        raise;
                      when event : others =>
-                         New_Line;
-                         Put_Line ("* Strange error i cpros *");
-                         Put_Line (Exception_Message (event));
-                         raise cfe0;
+                        New_Line;
+                        Put_Line ("* Strange error i cpros *");
+                        Put_Line (Exception_Message (event));
+                        raise cfe0;
                   end;
                end if;
             end if;
          exception
-            when cfe0 => 
-                if not term1 then
-                   raise;
-                end if;
+            when cfe0 =>
+               if not term1 then
+                  raise;
+               end if;
             when event : others =>
                Put_Line (" ** Error in cpros (1): ");
                Put_Line (Exception_Message (event));
@@ -145,9 +141,9 @@ package body cpros is
       end loop command_loop;
       return;
    exception
-      when Ada.IO_Exceptions.End_Error  =>
+      when Ada.IO_Exceptions.End_Error =>
          return;
-      when cfe0 => 
+      when cfe0 =>
          if not term1 then
             raise;
          end if;
@@ -155,8 +151,8 @@ package body cpros is
          Put_Line (" ** Error in cpros (2): ");
          Put_Line (Exception_Message (event));
          if not term1 then
-            raise; 
+            raise;
          end if;
-   end cprosa;
+   end cpros0;
 
 end cpros;

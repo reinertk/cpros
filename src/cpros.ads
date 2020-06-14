@@ -27,11 +27,13 @@
 -- 2020.06.14: removed exceptions declarations (by Reinert Korsnes)
 --------------------------------------------------------------------------------------
 
-with Ada.Text_IO;
-use  Ada.Text_IO;
-generic
-   type c_t is (<>);
-   with procedure cpros_main (command : c_t; str : in String);
+with Ada.Text_IO; use Ada.Text_IO;
 package cpros is
-   procedure cprosa (file1 : in File_Type; command_string : String := "");
+
+   cfe0 : exception;
+
+   generic
+      type c_t is (<>);
+      with procedure cpros_main (command : c_t; str : in String);
+   procedure cpros0 (file1 : in File_Type; command_string : String := "");
 end cpros;

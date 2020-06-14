@@ -24,16 +24,14 @@
 --  http://www.opensource.org/licenses/mit-license.php
 --------------------------------------------------------------------------------------
 -- Change log:
--- 2020.06.14: Major upgrade (by Reinert Korsnes). 
+-- 2020.06.14: Major upgrade (by Reinert Korsnes).
 --------------------------------------------------------------------------------------
 
-with Text_IO;       use Text_IO;
+with Text_IO; use Text_IO;
 with Ada;
 with Ada.Text_IO;
 with cpros;
-with split_string; 
-with cpros_exceptions;
-use  cpros_exceptions;
+with split_string;
 
 procedure cpros_test1 is
 
@@ -43,48 +41,58 @@ procedure cpros_test1 is
 
 -- (you are supposed to define your own version of the type "c_t" providing your actual commands.
 
-procedure cpros_actual1(command : in c_t; command_string : in String) is 
+   procedure cpros_actual1 (command : in c_t; command_string : in String) is
 
--- command contains actual entered/input command word (converted to type c_t).   
--- command_string contains the the whole command line. 
+-- command contains actual entered/input command word (converted to type c_t).
+-- command_string contains the the whole command line.
 
-    lw : constant String := split_string.last_word (command_string);
-    nw : constant Natural := split_string.Number_Of_Words(command_string);
+      lw : constant String  := split_string.last_word (command_string);
+      nw : constant Natural := split_string.number_of_words (command_string);
 
-begin
+   begin
 
-   Put_Line("You did enter" & natural'image(nw) 
-                            & " command component(s) (free for use). Last argument is """ 
-                            & (if nw > 1 then lw else "") 
-                            & """" ); 
-   For i in 1..nw loop
-       Put_Line(" Word number" & integer'image(i) & "  " & split_string.word (command_string, i));
-   end loop;
+      Put_Line
+        ("You did enter" &
+         Natural'Image (nw) &
+         " command component(s) (free for use). Last argument is """ &
+         (if nw > 1 then lw else "") &
+         """");
+      for i in 1 .. nw loop
+         Put_Line
+           (" Word number" &
+            Integer'Image (i) &
+            "  " &
+            split_string.word (command_string, i));
+      end loop;
 
-   New_Line;
+      New_Line;
 --
 -- use:
 -- raise cfe0 with "** message ** ";
 -- to interrupt erroneous commands (according to below).
 --
-   case command is
-     when c_this => Put_Line(" You ended up here (this)");
-                    if nw > 5 then
-                       raise cfe0 with "Wrong number of command words"; 
-                    end if;
-     when c_that => Put_Line(" You ended up here (that)");
-   end case;
-   return;
-end cpros_actual1;
+      case command is
+         when c_this =>
+            Put_Line (" You ended up here (this)");
+            if nw > 5 then
+               raise cpros.cfe0 with "Wrong number of command words";
+            end if;
+         when c_that =>
+            Put_Line (" You ended up here (that)");
+      end case;
+      return;
+   end cpros_actual1;
 
-package cpros_package1 is new cpros (c_t => c_t, cpros_main => cpros_actual1);
+   procedure cpros1 is new cpros.cpros0
+     (c_t        => c_t,
+      cpros_main => cpros_actual1);
 
 begin
 
--- cprosa below calls cpros_actual1 (which substitutes formal procedure in the generic cpros_package1) 
--- for each input command line (from terminal or file). It passes to the procedure cpros_actual1 a command 
--- name (stored in the variable "command") and also the whole command stored in "command_string": 
+-- cprosa below calls cpros_actual1 (which substitutes formal procedure in the generic cpros_package1)
+-- for each input command line (from terminal or file). It passes to the procedure cpros_actual1 a command
+-- name (stored in the variable "command") and also the whole command stored in "command_string":
 
-cpros_package1.cprosa(file1 => Ada.Text_IO.Standard_Input);
+   cpros1 (file1 => Ada.Text_IO.Standard_Input);
 
 end cpros_test1;
