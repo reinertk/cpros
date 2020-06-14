@@ -33,6 +33,8 @@ with Ada;
 with Ada.Text_IO;
 with cpros;
 with split_string; 
+with cpros_exceptions;
+use  cpros_exceptions;
 
 procedure cpros_test1 is
 
@@ -41,13 +43,8 @@ procedure cpros_test1 is
 -- list of commands (preceeded by "c_"):
 
    type c_t is (c_this, c_that);
--- type c_t is (c_exit, c_do, c_repeat, c_this, c_that);
--- subtype hidden_command_t is c_t with
---         static_predicate => hidden_command_t in c_exit .. c_repeat;
 
-
--- (Note: when you use cpros, you are supposed to define your own version of the type "c_t"
---  providing your actual commands. However, the commands "c_exit" and "c_do" are obligatory.
+-- (you are supposed to define your own version of the type "c_t" providing your actual commands.
 
 procedure cpros_actual1(command : in c_t; command_string : in String) is 
 
@@ -56,7 +53,7 @@ procedure cpros_actual1(command : in c_t; command_string : in String) is
 
     lw : constant String := split_string.last_word (command_string);
     nw : constant Natural := split_string.Number_Of_Words(command_string);
-    cfe : exception;
+--  cfe : exception;
 
 begin
 
@@ -69,19 +66,19 @@ begin
    end loop;
 
    New_Line;
+--
+-- use:
+-- raise cfe0 with "** message ** ";
+-- to interrupt erroneous commands (according to below).
+--
    case command is
      when c_this => Put_Line(" You ended up here (this)");
+                    if nw > 5 then
+                       raise cfe0 with "Wrong number of command words"; 
+                    end if;
      when c_that => Put_Line(" You ended up here (that)");
    end case;
    return;
-exception
-   when event : cfe =>
-        Put_Line (" ** Command format error: " & Exception_Message (event));
-        raise;
-   when event : others =>
-        Put_Line ("  " & Exception_Message (event));
-        Put_Line (" ** Command format error: " & command_string);
-        raise;
 end cpros_actual1;
 
 package cpros_package1 is new cpros (c_t => c_t, cpros_main => cpros_actual1);
@@ -93,6 +90,11 @@ begin
 -- name (stored in the variable "command") and also the whole command stored in "command_string": 
 
 cpros_package1.cprosa(file1 => Ada.Text_IO.Standard_Input);
+
+exception
+   when event : others =>
+        Put_Line (" Error: " & Exception_Message (event));
+        raise;
 
 end cpros_test1;
 

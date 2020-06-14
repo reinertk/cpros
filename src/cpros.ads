@@ -29,11 +29,10 @@
 
 with Ada.Text_IO;
 use Ada.Text_IO;
-
 generic
    type c_t is (<>);
    with procedure cpros_main (command : c_t; str : in String);
 package cpros is
-   cfe0, cfe1 : exception;
+-- cfe0 : exception;
    procedure cprosa (file1 : in File_Type; command_string : String := "");
 end cpros;
