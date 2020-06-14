@@ -27,7 +27,6 @@
 -- 2020.06.14: Major upgrade (by Reinert Korsnes). 
 --------------------------------------------------------------------------------------
 
-with Ada.Exceptions;
 with Text_IO;       use Text_IO;
 with Ada;
 with Ada.Text_IO;
@@ -37,8 +36,6 @@ with cpros_exceptions;
 use  cpros_exceptions;
 
 procedure cpros_test1 is
-
-   use Ada.Exceptions;
 
 -- list of commands (preceeded by "c_"):
 
@@ -53,7 +50,6 @@ procedure cpros_actual1(command : in c_t; command_string : in String) is
 
     lw : constant String := split_string.last_word (command_string);
     nw : constant Natural := split_string.Number_Of_Words(command_string);
---  cfe : exception;
 
 begin
 
@@ -91,10 +87,4 @@ begin
 
 cpros_package1.cprosa(file1 => Ada.Text_IO.Standard_Input);
 
-exception
-   when event : others =>
-        Put_Line (" Error: " & Exception_Message (event));
-        raise;
-
 end cpros_test1;
-

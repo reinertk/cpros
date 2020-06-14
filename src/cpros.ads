@@ -28,7 +28,7 @@
 --------------------------------------------------------------------------------------
 
 with Ada.Text_IO;
-use Ada.Text_IO;
+use  Ada.Text_IO;
 generic
    type c_t is (<>);
    with procedure cpros_main (command : c_t; str : in String);
